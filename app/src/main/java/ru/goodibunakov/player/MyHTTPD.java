@@ -12,20 +12,21 @@ import fi.iki.elonen.NanoHTTPD;
 
 public class MyHTTPD extends NanoHTTPD {
 
-    public static final String
+    private static final String
             MIME_PLAINTEXT = "text/plain",
             MIME_HTML = "text/html",
             MIME_JS = "text/javascript",
             MIME_CSS = "text/css",
             MIME_PNG = "image/png",
             MIME_FONT = "application/font-woff",
+            MIME_MPEG = "audio/mpeg",
             MIME_OGA = "audio/ogg";
 
     public static final int PORT = 8080;
 
     private Context context;
 
-    public MyHTTPD(int port, Context context) {
+    MyHTTPD(int port, Context context) {
         super(port);
         this.context = context;
     }
@@ -34,12 +35,12 @@ public class MyHTTPD extends NanoHTTPD {
     public Response serve(IHTTPSession session) {
 
         String answer = "";
-        String uri = null;
+        String uri;
         uri = session.getUri();
         Log.d("goodi", "uri = " + uri);
         Log.d("goodi", "uri substring(1)= " + uri.substring(1));
 
-        InputStream buffer = null;
+        InputStream buffer;
         if (uri.equals("/")) {
             try {
                 BufferedReader reader = null;
@@ -49,11 +50,18 @@ public class MyHTTPD extends NanoHTTPD {
                     e.printStackTrace();
                 }
 
-                String line = "";
-                while ((line = reader.readLine()) != null) {
-                    answer += line + "\n";
+                String line;
+                StringBuilder stringBuilder = new StringBuilder();
+                if (reader != null) {
+                    while ((line = reader.readLine()) != null) {
+                        //answer += line + "\n";
+                        stringBuilder.append(line).append("\n");
+                    }
                 }
-                reader.close();
+                if (reader != null) {
+                    reader.close();
+                }
+                answer = stringBuilder.toString();
 
             } catch (IOException ioe) {
                 Log.w("Httpd", ioe.toString());
@@ -66,15 +74,18 @@ public class MyHTTPD extends NanoHTTPD {
             try {
                 buffer = context.getAssets().open(uri.substring(1));
                 try {
-                    BufferedReader reader = null;
+                    BufferedReader reader;
 
                     reader = new BufferedReader(new InputStreamReader(buffer));
 
-                    String line = "";
+                    String line;
+                    StringBuilder stringBuilder = new StringBuilder();
                     while ((line = reader.readLine()) != null) {
-                        answer += line + "\n";
+                        stringBuilder.append(line).append("\n");
+                        // answer += line + "\n";
                     }
                     reader.close();
+                    answer = stringBuilder.toString();
 
                 } catch (IOException ioe) {
                     Log.w("Httpd", ioe.toString());
@@ -127,6 +138,17 @@ public class MyHTTPD extends NanoHTTPD {
                 e.printStackTrace();
             }
             return newChunkedResponse(Response.Status.OK, MIME_OGA, is);
+
+        } else if (uri.endsWith("mp3")) {
+            Log.d("goodi", "It's mp3 file");
+
+            InputStream is = null;
+            try {
+                is = context.getAssets().open(uri.substring(1));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return newChunkedResponse(Response.Status.OK, MIME_MPEG, is);
 
         } else if (uri.endsWith("css")) {
             Log.d("goodi", "It's css file");
