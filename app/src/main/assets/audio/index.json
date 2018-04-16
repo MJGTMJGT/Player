@@ -1,0 +1,526 @@
+{
+  "tracks" : [
+    {
+      "name" : "MusicXML Part",
+      "midi" : 1
+    }
+  ],
+  "v" : 2,
+  "bars" : [
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 60
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              },
+              {
+                "notes" : [
+                  {
+                    "pitch" : 60
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 62
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 1
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 64
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              },
+              {
+                "notes" : [
+                  {
+                    "pitch" : 64
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 65
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 1
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "s" : 1,
+                "pick" : 1,
+                "rhythm" : 0,
+                "notes" : [
+                  {
+                    "pitch" : 67
+                  }
+                ]
+              },
+              {
+                "notes" : [
+                  {
+                    "pitch" : 67
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 69
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              },
+              {
+                "notes" : [
+                  {
+                    "pitch" : 69
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 71
+                  }
+                ],
+                "s" : 0,
+                "rhythm" : 0
+              },
+              {
+                "notes" : [
+                  {
+                    "pitch" : 71
+                  }
+                ],
+                "s" : 0,
+                "rhythm" : 0
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 72
+                  }
+                ],
+                "s" : 0,
+                "rhythm" : 1
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "s" : 0,
+                "pick" : 1,
+                "rhythm" : 0,
+                "notes" : [
+                  {
+                    "pitch" : 72
+                  }
+                ]
+              },
+              {
+                "notes" : [
+                  {
+                    "pitch" : 72
+                  }
+                ],
+                "s" : 0,
+                "rhythm" : 0
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 71
+                  }
+                ],
+                "s" : 0,
+                "rhythm" : 1
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 69
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              },
+              {
+                "notes" : [
+                  {
+                    "pitch" : 69
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 67
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 1
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "s" : 1,
+                "pick" : 1,
+                "rhythm" : 0,
+                "notes" : [
+                  {
+                    "pitch" : 65
+                  }
+                ]
+              },
+              {
+                "notes" : [
+                  {
+                    "pitch" : 65
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 64
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              },
+              {
+                "notes" : [
+                  {
+                    "pitch" : 64
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 62
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              },
+              {
+                "notes" : [
+                  {
+                    "pitch" : 62
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 0
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "time" : [
+        2,
+        4
+      ]
+    },
+    {
+      "tracks" : [
+        {
+          "key" : 0,
+          "voices" : [
+            [
+              {
+                "notes" : [
+                  {
+                    "pitch" : 60
+                  }
+                ],
+                "s" : 1,
+                "rhythm" : 1
+              }
+            ]
+          ],
+          "clef" : "G2"
+        }
+      ],
+      "doublebar" : 1,
+      "time" : [
+        2,
+        4
+      ]
+    }
+  ],
+  "rhythms" : [
+    {
+      "id" : 0,
+      "val" : 0.25
+    },
+    {
+      "id" : 1,
+      "val" : 0.5
+    }
+  ],
+  "tempos" : [
+    [
+      0,
+      0,
+      120,
+      120,
+      0,
+      "",
+      1
+    ]
+  ]
+}

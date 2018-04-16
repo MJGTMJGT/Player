@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en"><!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Local Soundslice</title>
+
+    <link rel="stylesheet" href="assets/css/base_innerpage.css">
+    <link rel="stylesheet" href="assets/css/player_full.css" type="text/css">
+
+    <script type="text/javascript" async="" src="assets/js/linkid.js"></script>
+    <script type="text/javascript" src="assets/js/utils.min.js"></script>
+
+    <script>
+        var soundslice = {
+            "media_url": '/',
+            "user_id": 106387,
+            "username": 'mike-tevan',
+            "isNonfree": false
+        };
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="content-language" content="en">
+    <meta property="og:site_name" content="Soundslice">
+    <style>
+        @font-face {
+            font-family: 'Soundslice';
+            src: url('fonts/bravura1-18.eot');
+            src: url('fonts/bravura1-18-2.eot?#iefix') format('embedded-opentype'),
+            url('fonts/bravura1-18.woff2') format('woff2'),
+            url('fonts/bravura1-18.woff') format('woff'),
+            url('fonts/bravura1-18.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+    <style type="text/css">
+        .backpack.dropzone {
+            font-family: 'SF UI Display', 'Segoe UI';
+            font-size: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 250px;
+            height: 150px;
+            font-weight: lighter;
+            color: white;
+            will-change: right;
+            z-index: 2147483647;
+            bottom: 20%;
+            background: #333;
+            position: fixed;
+            user-select: none;
+            transition: left .5s, right .5s;
+            right: 0px;
+        }
+
+        .backpack.dropzone .animation {
+            height: 80px;
+            width: 250px;
+        }
+
+        .backpack.dropzone .title::before {
+            content: 'Save to';
+        }
+
+        .backpack.dropzone.closed {
+            right: -250px;
+        }
+
+        .backpack.dropzone.hover .animation {
+            animation: sxt-play-anim-hover 0.91s steps(21);
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes sxt-play-anim-hover {
+            from {
+                background-position: 0px;
+            }
+            to {
+                background-position: -5250px;
+            }
+        }
+
+        .backpack.dropzone.saving .title::before {
+            content: 'Saving to';
+        }
+
+        .backpack.dropzone.saving .animation {
+            animation: sxt-play-anim-saving steps(59) 2.46s infinite;
+        }
+
+        @keyframes sxt-play-anim-saving {
+            100% {
+                background-position: -14750px;
+            }
+        }
+
+        .backpack.dropzone.saved .title::before {
+            content: 'Saved to';
+        }
+
+        .backpack.dropzone.saved .animation {
+            animation: sxt-play-anim-saved steps(20) 0.83s forwards;
+        }
+
+        @keyframes sxt-play-anim-saved {
+            100% {
+                background-position: -5000px;
+            }
+        }
+    </style>
+</head>
+<body class="">
+
+<svg style="display: none;">
+    <symbol viewBox="0 0 32 32" id="shape-add-new-icon">
+        <g fill="currentColor">
+            <path d="M16,25a1,1,0,0,1-1-1V8a1,1,0,0,1,2,0V24A1,1,0,0,1,16,25Z"></path>
+            <path d="M24,17H8a1,1,0,0,1,0-2H24A1,1,0,0,1,24,17Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 18 24" id="shape-channels-bookmark">
+        <g stroke="none" stroke-width="1" fill="inherit" fill-rule="evenodd">
+            <g transform="translate(-55.000000, -43.000000)" stroke="currentColor" stroke-width="2" fill="inherit">
+                <path d="M58,44.25 C57.0335017,44.25 56.25,45.0335017 56.25,46 L56.25,63.761036 C56.25,64.1246679 56.3905886,64.4742191 56.6423644,64.7365875 C57.1811466,65.2980371 58.0730607,65.3164127 58.6345103,64.7776305 L62.4421186,61.123747 C63.3127013,60.2883123 64.6872987,60.2883123 65.5578814,61.123747 L69.3654897,64.7776305 C69.627858,65.0294062 69.9774092,65.1699948 70.3410412,65.1699948 C71.1191876,65.1699948 71.75,64.5391825 71.75,63.761036 L71.75,46 C71.75,45.0335017 70.9664983,44.25 70,44.25 L58,44.25 Z"></path>
+            </g>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-delete-icon">
+        <g fill="currentColor">
+            <path d="M21,27H11a1,1,0,0,1-1-.88l-2-17A1,1,0,0,1,9,8H23a1,1,0,0,1,1,1.12l-2,17A1,1,0,0,1,21,27Zm-9.11-2h8.22l1.76-15H10.12Z"></path>
+            <path d="M26,10H6A1,1,0,0,1,6,8H26A1,1,0,0,1,26,10Z"></path>
+            <path d="M20,10H12a1,1,0,0,1-1-1V5a1,1,0,0,1,1-1h8a1,1,0,0,1,1,1V9A1,1,0,0,1,20,10ZM13,8h6V6H13V8Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-digital-sound">
+        <g fill="currentColor">
+            <path d="M18.47,29.8H7a1,1,0,0,1-1-1V21.64a1,1,0,0,1,1-1h7.19V3.2a1,1,0,0,1,1-1h3.26a1,1,0,0,1,1,1V5.45h2.26a1,1,0,0,1,1,1V8.71H25a1,1,0,0,1,1,1V13a1,1,0,0,1-1,1H19.47V28.8A1,1,0,0,1,18.47,29.8ZM8,27.8h9.45V13a1,1,0,0,1,1-1H24V10.71H21.72a1,1,0,0,1-1-1V7.45H18.47a1,1,0,0,1-1-1V4.2H16.21V21.64a1,1,0,0,1-1,1H8V27.8Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 16 13" id="shape-double-arrow">
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+            <g id="Showing-post-info" transform="translate(-297.000000, -105.000000)" stroke="currentColor">
+                <g transform="translate(305.000000, 111.500000) scale(-1, 1) rotate(-180.000000) translate(-305.000000, -111.500000) translate(297.000000, 105.000000)">
+                    <path d="M2.20710678,6.5 L6.85355339,1.85355339 L7.20710678,1.5 L6.5,0.792893219 L6.14644661,1.14644661 L1.14644661,6.14644661 L1.05805826,6.23483496 L0.792893219,6.5 L1.14644661,6.85355339 L6.14644661,11.8535534 L6.5,12.2071068 L7.20710678,11.5 L6.85355339,11.1464466 L2.20710678,6.5 Z"
+                          id="Combined-Shape"></path>
+                    <path d="M10.2071068,6.5 L14.8535534,1.85355339 L15.2071068,1.5 L14.5,0.792893219 L14.1464466,1.14644661 L9.14644661,6.14644661 L9.05805826,6.23483496 L8.79289322,6.5 L9.14644661,6.85355339 L14.1464466,11.8535534 L14.5,12.2071068 L15.2071068,11.5 L14.8535534,11.1464466 L10.2071068,6.5 Z"
+                          id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 12 6" id="shape-dropdown">
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+            <g id="Publishing" transform="translate(-712.000000, -29.000000)" stroke="currentColor">
+                <polyline id="Line" points="713 29 717.880551 34.8805513 723 29"></polyline>
+            </g>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-edit-icon">
+        <path fill="currentColor"
+              d="M13.877,23.947L13.877,23.947c-0.266,0-0.52-0.105-0.707-0.293L8.927,19.41c-0.391-0.391-0.391-1.023,0-1.414L23.07,3.857  c0.391-0.391,1.023-0.391,1.414,0l4.243,4.244c0.188,0.188,0.293,0.442,0.293,0.707s-0.105,0.52-0.293,0.707L14.584,23.654  C14.396,23.842,14.142,23.947,13.877,23.947z M11.048,18.703l2.829,2.83L26.606,8.809l-2.829-2.83L11.048,18.703z"></path>
+        <path fill="currentColor"
+              d="M6.103,27.48c-0.26,0-0.516-0.102-0.708-0.293c-0.295-0.295-0.376-0.741-0.204-1.12l3.532-7.775  c0.136-0.299,0.409-0.513,0.732-0.571c0.321-0.06,0.654,0.045,0.885,0.277l4.243,4.244c0.232,0.231,0.335,0.562,0.277,0.886  c-0.059,0.322-0.271,0.596-0.57,0.731l-7.775,3.531C6.383,27.451,6.242,27.48,6.103,27.48z M9.947,20.434l-1.833,4.034l4.035-1.832  L9.947,20.434z"></path>
+        <path fill="currentColor"
+              d="M25.072,12.752c-0.256,0-0.512-0.098-0.707-0.293l-4.242-4.243c-0.391-0.391-0.391-1.024,0-1.414  c0.391-0.391,1.023-0.391,1.414,0l4.242,4.243c0.391,0.391,0.391,1.024,0,1.414C25.584,12.654,25.328,12.752,25.072,12.752z"></path>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-error">
+        <g fill="#e96b25">
+            <path d="M30.58,29.63H1.42a1,1,0,0,1-.87-1.5L15.13,2.88a1,1,0,0,1,1.73,0L31.44,28.13A1,1,0,0,1,30.58,29.63Zm-27.42-2H28.85L16,5.38Z"></path>
+            <path d="M16,21.12a1,1,0,0,1-1-1V11.2a1,1,0,0,1,2,0v8.92A1,1,0,0,1,16,21.12Z"></path>
+            <circle cx="16" cy="24.65" r="1.37"></circle>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-flat">
+        <g fill="currentColor">
+            <path d="M14,27a1,1,0,0,1-1-1V6a1,1,0,0,1,2,0V26A1,1,0,0,1,14,27Z"></path>
+            <path d="M14,27a1,1,0,0,1-.33-1.94,9.19,9.19,0,0,0,3.83-2.65,5.84,5.84,0,0,0,1.68-4.51A2.23,2.23,0,0,0,18,16.26a4.61,4.61,0,0,0-3.72,0,1,1,0,1,1-.66-1.89,6.47,6.47,0,0,1,5.37.17,4.25,4.25,0,0,1,2.11,3A7.7,7.7,0,0,1,19,23.72a11.22,11.22,0,0,1-4.68,3.23A1,1,0,0,1,14,27Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-fretboard">
+        <g fill="currentColor">
+            <path d="M32,31H2a1,1,0,0,1-1-1V1.83a1,1,0,0,1,1-1H32a1,1,0,1,1,0,2H3V29H32A1,1,0,0,1,32,31Z"></path>
+            <path d="M32,25.37H2.83a1,1,0,1,1,0-2H32A1,1,0,0,1,32,25.37Z"></path>
+            <path d="M32,19.73H2.83a1,1,0,0,1,0-2H32A1,1,0,0,1,32,19.73Z"></path>
+            <path d="M32,14.1H2.83a1,1,0,0,1,0-2H32A1,1,0,0,1,32,14.1Z"></path>
+            <path d="M32,8.47H2.83a1,1,0,0,1,0-2H32A1,1,0,0,1,32,8.47Z"></path>
+            <path d="M13,30.83a1,1,0,0,1-1-1v-28a1,1,0,0,1,2,0v28A1,1,0,0,1,13,30.83Z"></path>
+            <path d="M24,30.83a1,1,0,0,1-1-1v-28a1,1,0,0,1,2,0v28A1,1,0,0,1,24,30.83Z"></path>
+            <circle cx="7.5" cy="13.1" r="2.5"></circle>
+            <circle cx="18.5" cy="18.58" r="2.5"></circle>
+            <circle cx="18.5" cy="24.37" r="2.5"></circle>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-full-demo">
+        <g fill="currentColor">
+            <path d="M12.33,27.83H5.17a1,1,0,0,1-1-1V19.67a1,1,0,0,1,2,0v6.17h6.17A1,1,0,1,1,12.33,27.83Z"></path>
+            <path d="M26.83,13.33a1,1,0,0,1-1-1V6.17H19.67a1,1,0,0,1,0-2h7.17a1,1,0,0,1,1,1v7.17A1,1,0,0,1,26.83,13.33Z"></path>
+            <path d="M5.17,13.33a1,1,0,0,1-1-1V5.17a1,1,0,0,1,1-1h7.17a1,1,0,0,1,0,2H6.17v6.17A1,1,0,0,1,5.17,13.33Z"></path>
+            <path d="M26.83,27.83H19.67a1,1,0,0,1,0-2h6.17V19.67a1,1,0,0,1,2,0v7.17A1,1,0,0,1,26.83,27.83Z"></path>
+            <path d="M12.33,13.33A1,1,0,0,1,11.63,13L4.46,5.87A1,1,0,0,1,5.87,4.46L13,11.63A1,1,0,0,1,12.33,13.33Z"></path>
+            <path d="M19.67,13.33A1,1,0,0,1,19,11.63l7.17-7.17a1,1,0,0,1,1.41,1.41L20.37,13A1,1,0,0,1,19.67,13.33Z"></path>
+            <path d="M26.83,27.83a1,1,0,0,1-.71-0.29L19,20.37A1,1,0,0,1,20.37,19l7.17,7.17A1,1,0,0,1,26.83,27.83Z"></path>
+            <path d="M5.17,27.83a1,1,0,0,1-.71-1.71L11.63,19A1,1,0,0,1,13,20.37L5.87,27.54A1,1,0,0,1,5.17,27.83Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-gear">
+        <g fill="currentColor">
+            <path d="M18.59,31.09H13.41a1,1,0,0,1-1-.92l-0.3-3.62a11.26,11.26,0,0,1-3.29-1.92l-3.3,1.55a1,1,0,0,1-1.29-.41L1.64,21.3A1,1,0,0,1,1.93,20l3-2.11a11.14,11.14,0,0,1,0-3.72L1.93,12a1,1,0,0,1-.3-1.32L4.23,6.21a1,1,0,0,1,1.29-.4L8.94,7.42A11.26,11.26,0,0,1,12.1,5.61l0.32-3.78a1,1,0,0,1,1-.92h5.18a1,1,0,0,1,1,.92L19.9,5.61a11.21,11.21,0,0,1,3.16,1.81l3.43-1.61a1,1,0,0,1,1.29.4l2.59,4.48a1,1,0,0,1-.3,1.32L27,14.15a11.26,11.26,0,0,1,.17,1.94A11,11,0,0,1,27,17.87l3,2.11a1,1,0,0,1,.29,1.32l-2.59,4.48a1,1,0,0,1-1.29.4l-3.3-1.55a11.19,11.19,0,0,1-3.29,1.92l-0.3,3.62A1,1,0,0,1,18.59,31.09Zm-4.26-2h3.34l0.28-3.35a1,1,0,0,1,.71-0.87,9.19,9.19,0,0,0,3.66-2.13,1,1,0,0,1,1.12-.18L26.5,24l1.67-2.89-2.82-2a1,1,0,0,1-.4-1,9.05,9.05,0,0,0,.23-2,9.24,9.24,0,0,0-.26-2.15,1,1,0,0,1,.4-1.05l2.85-2L26.5,8l-3.18,1.5a1,1,0,0,1-1.1-.17,9.18,9.18,0,0,0-3.54-2A1,1,0,0,1,18,6.43l-0.3-3.52H14.33L14,6.43a1,1,0,0,1-.71.87,9.23,9.23,0,0,0-3.55,2,1,1,0,0,1-1.1.17L5.5,8,3.83,10.9l2.85,2a1,1,0,0,1,.4,1.06,9.14,9.14,0,0,0,0,4.16,1,1,0,0,1-.4,1l-2.82,2L5.5,24l3.07-1.44a1,1,0,0,1,1.12.18,9.22,9.22,0,0,0,3.66,2.14,1,1,0,0,1,.71.87Z"></path>
+            <path d="M16,20.06A4.06,4.06,0,1,1,20.06,16,4.06,4.06,0,0,1,16,20.06Zm0-6.12A2.06,2.06,0,1,0,18.06,16,2.06,2.06,0,0,0,16,13.94Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-keyboard">
+        <g fill="currentColor">
+            <path d="M30.85,31.9H1.15a1,1,0,0,1-1-1V1.1a1,1,0,0,1,1-1h29.7a1,1,0,0,1,1,1V30.9A1,1,0,0,1,30.85,31.9Zm-28.7-2h27.7V2.1H2.15V29.9Z"></path>
+            <path d="M16,31.9a1,1,0,0,1-1-1V1.1a1,1,0,0,1,2,0V30.9A1,1,0,0,1,16,31.9Z"></path>
+            <path d="M23.45,31.9a1,1,0,0,1-1-1V1.1a1,1,0,0,1,2,0V30.9A1,1,0,0,1,23.45,31.9Z"></path>
+            <path d="M8.55,31.9a1,1,0,0,1-1-1V1.1a1,1,0,0,1,2,0V30.9A1,1,0,0,1,8.55,31.9Z"></path>
+            <rect x="6.65" y="1.1" width="3.9" height="16.7"></rect>
+            <path d="M10.55,18.3H6.65a0.5,0.5,0,0,1-.5-0.5V1.1A0.5,0.5,0,0,1,6.65.6h3.9a0.5,0.5,0,0,1,.5.5V17.8A0.5,0.5,0,0,1,10.55,18.3Zm-3.4-1H10V1.6H7.15V17.3Z"></path>
+            <rect x="14.15" y="1.1" width="3.9" height="16.7"></rect>
+            <path d="M18,18.3h-3.9a0.5,0.5,0,0,1-.5-0.5V1.1a0.5,0.5,0,0,1,.5-0.5H18a0.5,0.5,0,0,1,.5.5V17.8A0.5,0.5,0,0,1,18,18.3Zm-3.4-1h2.9V1.6h-2.9V17.3Z"></path>
+            <rect x="21.55" y="1.1" width="3.9" height="16.7"></rect>
+            <path d="M25.45,18.3h-3.9a0.5,0.5,0,0,1-.5-0.5V1.1a0.5,0.5,0,0,1,.5-0.5h3.9a0.5,0.5,0,0,1,.5.5V17.8A0.5,0.5,0,0,1,25.45,18.3Zm-3.4-1H25V1.6H22V17.3Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-left-right">
+        <g fill="currentColor">
+            <path d="M6.75,22.07A1,1,0,0,1,6,21.77L1,16.71a1,1,0,0,1,0-1.41L6,10.23a1,1,0,0,1,1.41,1.41L3.09,16l4.36,4.36A1,1,0,0,1,6.75,22.07Z"></path>
+            <path d="M27.64,17H3.1C1.76,17,.68,16.55.68,16s1.08-1,2.42-1H27.64c1.34,0,2.42.45,2.42,1S29,17,27.64,17Z"></path>
+            <path d="M25.25,22.07a1,1,0,0,1-.71-1.71L28.91,16l-4.36-4.36A1,1,0,0,1,26,10.22L31,15.29a1,1,0,0,1,0,1.41L26,21.78A1,1,0,0,1,25.25,22.07Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 -4 32 36" id="shape-lyrics-icon">
+        <path d="M0.1,23.2h6.5v-1.9H2.3v-8.4H0.1V23.2L0.1,23.2z M10.1,23.2h2.2V19l3.9-6.1h-2.5L11.2,17l-2.6-4.1H6.2l4,6.1L10.1,23.2  L10.1,23.2z M23.9,23.2h2.5l-2.3-3.9c1.1-0.3,2.3-1.2,2.3-3.1s-1.3-3.3-3.5-3.3h-4.8v10.3h2.2v-3.7h1.6L23.9,23.2L23.9,23.2z   M22.5,17.7h-2.3v-2.8h2.3c0.9,0,1.5,0.5,1.5,1.4C24.1,17.1,23.4,17.7,22.5,17.7z M31.9,20.3v-1.7h-3.7v1.7H31.9z"></path>
+    </symbol>
+    <symbol viewBox="0 0 15 15" id="shape-minus">
+        <path d="M13.9,8.5H1.1a1,1,0,0,1,0-2H13.9A1,1,0,0,1,13.9,8.5Z" fill="currentColor"></path>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-mixer">
+        <g fill="currentColor">
+            <path d="M30.81,31.81H1.19a1,1,0,0,1-1-1V1.19a1,1,0,0,1,1-1H30.81a1,1,0,0,1,1,1V30.81A1,1,0,0,1,30.81,31.81Zm-28.62-2H29.81V2.19H2.19V29.81Z"></path>
+            <path d="M7.42,27.72a1,1,0,0,1-1-1V20.09a1,1,0,0,1,2,0v6.63A1,1,0,0,1,7.42,27.72Z"></path>
+            <path d="M7.42,14.87a1,1,0,0,1-1-1V5.28a1,1,0,0,1,2,0v8.59A1,1,0,0,1,7.42,14.87Z"></path>
+            <path d="M16.36,27.72a1,1,0,0,1-1-1V13.22a1,1,0,0,1,2,0v13.5A1,1,0,0,1,16.36,27.72Z"></path>
+            <path d="M16.36,8a1,1,0,0,1-1-1V5.28a1,1,0,0,1,2,0V7A1,1,0,0,1,16.36,8Z"></path>
+            <path d="M24.58,27.72a1,1,0,0,1-1-1V25.84a1,1,0,0,1,2,0v0.88A1,1,0,0,1,24.58,27.72Z"></path>
+            <path d="M24.58,19.7a1,1,0,0,1-1-1V5.28a1,1,0,0,1,2,0V18.7A1,1,0,0,1,24.58,19.7Z"></path>
+            <path d="M7.42,21.09A4.11,4.11,0,1,1,11.53,17,4.11,4.11,0,0,1,7.42,21.09Zm0-6.22A2.11,2.11,0,1,0,9.53,17,2.11,2.11,0,0,0,7.42,14.87Z"></path>
+            <path d="M16.36,14.22a4.11,4.11,0,1,1,4.11-4.11A4.11,4.11,0,0,1,16.36,14.22Zm0-6.22a2.11,2.11,0,1,0,2.11,2.11A2.11,2.11,0,0,0,16.36,8Z"></path>
+            <path d="M24.58,26.22a4.11,4.11,0,1,1,4.11-4.11A4.11,4.11,0,0,1,24.58,26.22Zm0-6.22a2.11,2.11,0,1,0,2.11,2.11A2.11,2.11,0,0,0,24.58,20Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 36" id="shape-music-note">
+        <g fill="currentColor">
+            <path d="M11.9,26.8c0.1,1.4-0.9,3-2.5,3.9c-2.1,1.2-4.6,0.9-5.5-0.7C2.9,28.5,3.9,26.2,6,25  c1.3-0.7,2.7-0.9,3.8-0.6"></path>
+            <path d="M26.6,26.8L26.6,26.8L26.6,26.8c0.1,1.4-0.9,3-2.5,3.9c-2.1,1.2-4.6,0.9-5.5-0.7  c-0.9-1.6,0.1-3.9,2.2-5.1c1.3-0.7,2.6-0.9,3.7-0.6"></path>
+            <g shape-rendering="crispEdges">
+                <rect x="9.8" y="10" width="16.8" height="4.2"></rect>
+                <rect x="9.8" y="14" width="2.1" height="12.8"></rect>
+                <rect x="24.5" y="14" width="2.1" height="12.8"></rect>
+            </g>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-no-volume-icon">
+        <g fill="currentColor">
+            <path d="M23.29,24.57a1,1,0,0,1-.42-0.09l-9.74-4.53H8.31a1,1,0,0,1-1-1V13.06a1,1,0,0,1,1-1h4.83l9.74-4.54a1,1,0,0,1,1.42.91V23.57A1,1,0,0,1,23.29,24.57Zm-14-6.63h4a1,1,0,0,1,.42.09l8.52,4V10l-8.52,4a1,1,0,0,1-.42.09h-4v3.89Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-pause-icon">
+        <g fill="currentColor">
+            <path d="M11.58,5.59V26.41H3.75V5.59h7.83m0-2H3.75a2,2,0,0,0-2,2V26.41a2,2,0,0,0,2,2h7.83a2,2,0,0,0,2-2V5.59a2,2,0,0,0-2-2h0Z"></path>
+            <path d="M28.25,5.59V26.41H20.42V5.59h7.83m0-2H20.42a2,2,0,0,0-2,2V26.41a2,2,0,0,0,2,2h7.83a2,2,0,0,0,2-2V5.59a2,2,0,0,0-2-2h0Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-play-123">
+        <g fill="currentColor">
+            <path d="M7,30.21a1,1,0,0,1-1-1V2.79A1,1,0,0,1,7.57,2l18,13.21a1,1,0,0,1,0,1.61L7.57,30A1,1,0,0,1,7,30.21ZM8,4.76V27.24L23.33,16Z"></path>
+            <path d="M18.5,26.4h0l-1.3.6-0.3-1.2,1.8-.8H20v6.8H18.5V26.4Z"></path>
+            <path d="M21.4,31.9v-1l0.9-.8c1.5-1.3,2.2-2.1,2.2-2.9a0.93,0.93,0,0,0-1.1-1,2.53,2.53,0,0,0-1.5.6l-0.5-1.1a3.61,3.61,0,0,1,2.2-.7A2.14,2.14,0,0,1,26,27.1,4,4,0,0,1,24.2,30l-0.6.5h2.6v1.3H21.4v0.1Z"></path>
+            <path d="M27.5,30.3a4.58,4.58,0,0,0,1.6.4,1,1,0,0,0,1.2-.9,1.19,1.19,0,0,0-1.4-1H28.2V27.7h0.6a1,1,0,0,0,1.2-.8c0-.4-0.3-0.7-1-0.7a2.59,2.59,0,0,0-1.4.4l-0.3-1.2a3.81,3.81,0,0,1,2.1-.5c1.5,0,2.3.8,2.3,1.7a1.68,1.68,0,0,1-1.2,1.6h0A1.73,1.73,0,0,1,32,29.9c0,1.2-1.1,2.1-2.8,2.1a3.44,3.44,0,0,1-2-.5Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-play-1x">
+        <g fill="currentColor">
+            <path d="M7,30.21a1,1,0,0,1-1-1V2.79A1,1,0,0,1,7.57,2l18,13.21a1,1,0,0,1,0,1.61L7.57,30A1,1,0,0,1,7,30.21ZM8,4.76V27.24L23.33,16Z"></path>
+            <path d="M21,25.8h0l-1.5.7-0.3-1.4,2.1-1h1.5v7.8H21V25.8h0Z"></path>
+            <path d="M29.9,32l-0.7-1.5c-0.3-.6-0.5-1-0.7-1.5h0c-0.2.5-.4,0.9-0.6,1.5L27.2,32H25.1l2.3-4.1-2.3-4h2.1l0.7,1.5c0.2,0.5.4,0.9,0.6,1.3h0a5.17,5.17,0,0,1,.6-1.3l0.7-1.5h2.1l-2.3,3.9L32,31.9H29.9V32Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-play-icon">
+        <g fill="currentColor">
+            <path d="M7,30.21a1,1,0,0,1-1-1V2.79A1,1,0,0,1,7.57,2l18,13.21a1,1,0,0,1,0,1.61L7.57,30A1,1,0,0,1,7,30.21ZM8,4.76V27.24L23.33,16Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 15 15" id="shape-plus">
+        <g fill="currentColor">
+            <path d="M7.5,14.9a1,1,0,0,1-1-1V1.1a1,1,0,0,1,2,0V13.9A1,1,0,0,1,7.5,14.9Z"></path>
+            <path d="M13.9,8.5H1.1a1,1,0,0,1,0-2H13.9A1,1,0,0,1,13.9,8.5Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-print-icon">
+        <g fill="currentColor">
+            <circle cx="22.56" cy="14.95" r="1.27"></circle>
+            <path d="M27.17,24.93h-4a1,1,0,0,1-1-1V19.44H9.86v4.49a1,1,0,0,1-1,1h-4a1,1,0,0,1-1-1V11.32a1,1,0,0,1,1-1H27.17a1,1,0,0,1,1,1v12.6A1,1,0,0,1,27.17,24.93Zm-3-2h2V12.32H5.83v10.6h2V18.44a1,1,0,0,1,1-1H23.14a1,1,0,0,1,1,1v4.49Z"></path>
+            <path d="M23.14,29.67H8.86a1,1,0,0,1-1-1V23.93a1,1,0,0,1,2,0v3.74H22.14V23.93a1,1,0,0,1,2,0v4.74A1,1,0,0,1,23.14,29.67Z"></path>
+            <path d="M23.14,24.93a1,1,0,0,1-1-1V19.44H9.86v4.49a1,1,0,1,1-2,0V18.44a1,1,0,0,1,1-1H23.14a1,1,0,0,1,1,1v5.49A1,1,0,0,1,23.14,24.93Z"></path>
+            <path d="M23.14,12.21H8.86a1,1,0,0,1-1-1V3.33a1,1,0,0,1,1-1H19.68a1,1,0,0,1,.71.29l3.46,3.46a1,1,0,0,1,.29.71v4.42A1,1,0,0,1,23.14,12.21Zm-13.28-2H22.14v-3L19.27,4.33H9.86v5.88Z"></path>
+            <path d="M23.09,7.73H19.46a1,1,0,0,1-1-1V3.33a1,1,0,0,1,1.68-.73L23.77,6A1,1,0,0,1,23.09,7.73Zm-2.63-2h0.1l-0.1-.09V5.73Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-recording-icon">
+        <g fill="currentColor">
+            <path d="M7.87,27.49a7.53,7.53,0,0,1,0-15.05,1,1,0,0,1,1,1V26.49A1,1,0,0,1,7.87,27.49Zm-1-13a5.53,5.53,0,0,0,0,10.87V14.53Z"></path>
+            <path d="M24.13,27.49a1,1,0,0,1-1-1V13.44a1,1,0,0,1,1-1A7.53,7.53,0,1,1,24.13,27.49Zm1-13V25.4A5.53,5.53,0,0,0,25.13,14.53Z"></path>
+            <path d="M24.28,14.63a1,1,0,0,1-1-1A7.12,7.12,0,1,0,9,13.63a1,1,0,1,1-2,0,9.12,9.12,0,1,1,18.24,0A1,1,0,0,1,24.28,14.63Z"></path>
+            <rect x="6.87" y="12.44" width="3.84" height="15.06" rx="1" ry="1"></rect>
+            <rect x="21.29" y="12.44" width="3.84" height="15.06" rx="1" ry="1"></rect>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-sharp">
+        <g fill="currentColor">
+            <path d="M9,15a1,1,0,0,1-.27-2L22.54,9.18a1,1,0,0,1,.54,1.93L9.27,15A1,1,0,0,1,9,15Z"></path>
+            <path d="M9,23a1,1,0,0,1-.27-2l13.81-3.86a1,1,0,0,1,.54,1.93L9.27,23A1,1,0,0,1,9,23Z"></path>
+            <path d="M13,27.07a1,1,0,0,1-1-1v-20a1,1,0,0,1,2,0v20A1,1,0,0,1,13,27.07Z"></path>
+            <path d="M19,26.07a1,1,0,0,1-1-1v-20a1,1,0,0,1,2,0v20A1,1,0,0,1,19,26.07Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-unfullscreen">
+        <g fill="currentColor">
+            <path d="M12.33,13.33H5.17a1,1,0,1,1,0-2h6.17V5.17a1,1,0,0,1,2,0v7.17A1,1,0,0,1,12.33,13.33Z"></path>
+            <path d="M12.33,13.33A1,1,0,0,1,11.63,13L4.46,5.87A1,1,0,0,1,5.87,4.46L13,11.63A1,1,0,0,1,12.33,13.33Z"></path>
+            <path d="M19.67,27.83a1,1,0,0,1-1-1V19.67a1,1,0,0,1,1-1h7.17a1,1,0,0,1,0,2H20.67v6.17A1,1,0,0,1,19.67,27.83Z"></path>
+            <path d="M26.83,27.83a1,1,0,0,1-.71-0.29L19,20.37A1,1,0,0,1,20.37,19l7.17,7.17A1,1,0,0,1,26.83,27.83Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-uparrow">
+        <g fill="currentColor">
+            <polyline points="3.45 14 16.05 2 28.55 14 3.45 14"></polyline>
+            <polyline points="3.45 18 28.55 18 16.05 30 3.45 18"></polyline>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-upload">
+        <g fill="currentColor">
+            <polygon
+                    points="16 6.21 10.47 13.58 14.16 13.58 14.16 20.95 17.84 20.95 17.84 13.58 21.53 13.58 16 6.21"></polygon>
+            <rect x="6.78" y="23.4" width="18.43" height="2.39"></rect>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 24 21" id="shape-video-move-right">
+        <g id="video-icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="video-move-right" fill-rule="nonzero" fill="currentColor">
+                <g id="Group">
+                    <path d="M14,18 L21,18 L21,3 L13,3 L13,9 L3,9 L3,18 L14,18 Z M3,0 L21,0 C22.6568542,0 24,1.34314575 24,3 L24,18 C24,19.6568542 22.6568542,21 21,21 L3,21 C1.34314575,21 2.02906125e-16,19.6568542 0,18 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.33066907e-16 3,0 Z"
+                          id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 24 21" id="shape-video-move-top">
+        <g id="video-icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="video-move-top" fill-rule="nonzero" fill="currentColor">
+                <g id="Group">
+                    <path d="M3,0 L21,0 C22.6568542,0 24,1.34314575 24,3 L24,18 C24,19.6568542 22.6568542,21 21,21 L3,21 C1.34314575,21 2.02906125e-16,19.6568542 0,18 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.33066907e-16 3,0 Z M3,9 L3,18 L21,18 L21,9 L3,9 Z"
+                          id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-video-source-icon">
+        <g fill="currentColor">
+            <path d="M30,27H2a1,1,0,0,1-1-1V6A1,1,0,0,1,2,5H30a1,1,0,0,1,1,1V26A1,1,0,0,1,30,27ZM3,25H29V7H3V25Z"></path>
+            <path d="M13.84,22.53a1,1,0,0,1-1-1V10.47a1,1,0,0,1,1.64-.77l6.64,5.53a1,1,0,0,1,0,1.54l-6.64,5.53A1,1,0,0,1,13.84,22.53Zm1-9.92v6.78L18.92,16Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-violin">
+        <g fill="currentColor">
+            <path d="M11.21,31.53c-2.35,0-4.55-1.71-6.46-3.63a1,1,0,0,1-.27-0.2c-2.14-2.18-4.54-5.07-4.06-8,0.36-2.2,2.17-4.08,5.72-5.9A1,1,0,0,1,7.31,14l0.3,0.3c0.81,0.81,1.36,1.21,3,0a4.28,4.28,0,0,0,1.07-1.7,0.86,0.86,0,0,0,0-.74l-0.4-.4a1,1,0,0,1-.23-1c0.42-1.15,2.05-5,5.49-5.73,2.31-.51,4.83.48,7.5,2.94l0.15,0.12,0.5,0.5h0a1,1,0,0,1,.2.28c2.26,2.66,3.1,5.14,2.52,7.38-0.93,3.54-5.09,5-5.92,5.3a1,1,0,0,1-1-.25l-0.4-.4c-0.23-.23-1.29-0.08-2.46,1-1.29,1.63-.88,2.25-0.13,3l0.3,0.3A1,1,0,0,1,18,26c-2,3.49-4,5.24-6.2,5.49A4.82,4.82,0,0,1,11.21,31.53Zm-6-6a1,1,0,0,1,.26.2c2.64,2.81,4.53,4,6.11,3.79,1.39-.16,2.81-1.43,4.31-3.86-1.48-1.65-1.39-3.4.27-5.47l0.1-.11c1.85-1.72,4-2.15,5.24-1,1.12-.45,3.49-1.62,4-3.69,0.45-1.71-.42-3.77-2.58-6.12-2.24-2.13-4.23-3-5.92-2.64-2.06.46-3.3,2.72-3.81,3.88a2.7,2.7,0,0,1,.46,2.64A6.28,6.28,0,0,1,12,15.71l-0.1.09c-2.14,1.63-3.8,1.68-5.48.13-2.48,1.37-3.8,2.72-4,4.1S3,23.18,5.17,25.52Z"></path>
+            <path d="M16.1,16.9a1,1,0,0,1-.69-1.72l14.5-14a1,1,0,1,1,1.39,1.44l-14.5,14A1,1,0,0,1,16.1,16.9Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-volume-icon">
+        <g fill="currentColor">
+            <path d="M18.29,24.57a1,1,0,0,1-.42-0.09L8.13,19.95H3.31a1,1,0,0,1-1-1V13.06a1,1,0,0,1,1-1H8.13l9.74-4.54a1,1,0,0,1,1.42.91V23.57A1,1,0,0,1,18.29,24.57Zm-14-6.63h4a1,1,0,0,1,.42.09l8.52,4V10L8.78,14a1,1,0,0,1-.42.09h-4v3.89Z"></path>
+            <path d="M21.26,22.17a1,1,0,0,1-.38-1.93,4.58,4.58,0,0,0,0-8.48,1,1,0,1,1,.76-1.85,6.58,6.58,0,0,1,0,12.19A1,1,0,0,1,21.26,22.17Z"></path>
+            <path d="M23.1,25.34a1,1,0,0,1-.38-1.93,8,8,0,0,0,0-14.82,1,1,0,1,1,.76-1.85,10,10,0,0,1,0,18.52A1,1,0,0,1,23.1,25.34Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-waveform-zoomout-icon">
+        <line fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              stroke-miterlimit="10" x1="8" y1="16" x2="24" y2="16"></line>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-waveform">
+        <g>
+            <path fill="currentColor"
+                  d="M31,15h-4.5c-0.246,0-0.483,0.091-0.667,0.255l-2.132,1.907l-3.116-7.225c-0.174-0.403-0.583-0.645-1.028-0.598   c-0.437,0.049-0.791,0.377-0.872,0.809l-1.421,7.547l-1.27-11.637c-0.053-0.482-0.444-0.858-0.929-0.89   c-0.476-0.029-0.921,0.289-1.037,0.761l-2.4,9.83l-1.146-6.109C10.401,9.213,10.042,8.883,9.6,8.838   C9.159,8.8,8.74,9.046,8.573,9.458L8,10.872v5.323l1.146-2.826l1.372,7.315c0.087,0.463,0.485,0.803,0.956,0.815   c0.44,0.011,0.886-0.306,0.999-0.763l2.151-8.81l1.383,12.681c0.054,0.493,0.46,0.872,0.955,0.891C16.975,25.5,16.987,25.5,17,25.5   c0.479,0,0.894-0.341,0.982-0.815l2.062-10.951l2.37,5.496c0.127,0.295,0.389,0.511,0.703,0.58c0.316,0.07,0.642-0.017,0.882-0.231   L26.882,17H31c0.553,0,1-0.447,1-1C32,15.448,31.553,15,31,15z"></path>
+            <path fill="currentColor"
+                  d="M5-1C4.448-1,4-0.552,4,0v32c0,0.553,0.448,1,1,1s1-0.447,1-1V0C6-0.552,5.552-1,5-1z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-zoom-in">
+        <g fill="currentColor">
+            <path d="M16.63,22.17a8.75,8.75,0,1,1,8.75-8.75A8.76,8.76,0,0,1,16.63,22.17Zm0-15.5a6.75,6.75,0,1,0,6.75,6.75A6.76,6.76,0,0,0,16.63,6.67Z"></path>
+            <path d="M7.82,27.33A1,1,0,0,1,7,25.75l4.4-6.28A1,1,0,1,1,13,20.62L8.64,26.9A1,1,0,0,1,7.82,27.33Z"></path>
+            <path d="M20.78,14.42H12.49a1,1,0,0,1,0-2h8.29A1,1,0,0,1,20.78,14.42Z"></path>
+            <path d="M16.63,18.57a1,1,0,0,1-1-1V9.28a1,1,0,1,1,2,0v8.29A1,1,0,0,1,16.63,18.57Z"></path>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 32 32" id="shape-zoom-out">
+        <g fill="currentColor">
+            <path d="M16.63,22.17a8.75,8.75,0,1,1,8.75-8.75A8.76,8.76,0,0,1,16.63,22.17Zm0-15.5a6.75,6.75,0,1,0,6.75,6.75A6.76,6.76,0,0,0,16.63,6.67Z"></path>
+            <path d="M7.82,27.33A1,1,0,0,1,7,25.75l4.4-6.28A1,1,0,1,1,13,20.62L8.64,26.9A1,1,0,0,1,7.82,27.33Z"></path>
+            <path d="M20.78,14.42H12.49a1,1,0,0,1,0-2h8.29A1,1,0,0,1,20.78,14.42Z"></path>
+        </g>
+    </symbol>
+</svg>
+
+<div id="appandedit" class="appandedit">
+
+    <div class="playererr playererrmsg1">
+        <svg class="svg-icon">
+            <use xlink:href="#shape-error"></use>
+        </svg>
+        <p>Error!</p>
+    </div>
+    <div class="playererr playererrmsg2">
+        <svg class="svg-icon">
+            <use xlink:href="#shape-error"></use>
+        </svg>
+        <p>Error!</p>
+        <button class="action-button close-error playererrclose">OK</button>
+    </div>
+
+
+    <div id="editbarpane"></div>
+    <div id="editorpane" class="uisidebar">
+        <div class="editorpane-loading">
+            <img class="playloadspin" src="assets/images/loader-circle.png" alt="">
+        </div>
+    </div>
+
+
+    <div class="appwrapper" id="appwrapper">
+        <section id="settings" class="settings-panel noselect uisidebar" role="complimentary">
+            <div class="sidebar-header">
+                <button class="action-button pull-right closesidebar" id="closesettings" style="margin-top: -4px;">×
+                </button>
+                <h3>Settings</h3>
+            </div>
+
+            <div class="slidecontroller listcontrolblock onlynotation">
+                <div id="zoomtip" class="ui-tooltip text-center">
+                    <p class="margin-bottom-0">100%</p>
+                </div>
+                <button id="resizeout" class="action-button left-slide-control" data-step="-1">
+                    <svg class="svg-icon light-icon">
+                        <use xlink:href="#shape-zoom-out"></use>
+                    </svg>
+                </button>
+                <input type="range" class="inputrange" id="resizerange" min="-25" max="25" value="0"
+                       data-tooltip="zoomtip">
+                <button id="resizein" class="action-button right-slide-control" data-step="1">
+                    <svg class="svg-icon light-icon">
+                        <use xlink:href="#shape-zoom-in"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="slidecontroller listcontrolblock">
+                <button id="decrease-volume" class="action-button left-slide-control" data-step="-10">
+                    <svg class="svg-icon light-icon">
+                        <use xlink:href="#shape-no-volume-icon"></use>
+                    </svg>
+                </button>
+                <input type="range" class="inputrange" id="volumeslider" min="0" max="100" value="100">
+                <button id="increase-volume" class="action-button right-slide-control" data-step="10">
+                    <svg class="svg-icon light-icon">
+                        <use xlink:href="#shape-volume-icon"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="listcontrolblock">
+                <button id="fullscreenbutton" class="settingsbutton">
+                    <svg class="svg-icon svg-icon-small">
+                        <use xlink:href="#shape-full-demo"></use>
+                    </svg>
+                    Full screen
+                </button>
+                <button id="vidflip" class="settingsbutton hidden">
+                    <svg class="svg-icon svg-icon-small">
+                        <use xlink:href="#shape-left-right"></use>
+                    </svg>
+                    Flip video
+                </button>
+            </div>
+
+            <div class="mobile-only sidebar-separator">
+                <h3>Recordings</h3>
+            </div>
+
+            <div id="settings-source-toggler" class="hiddenblockelement active">
+                <div id="recordings-list-mobile" class="listcontrolblock separator-block mobile-only"><label
+                        class="audiotype-controller visible" data-backend="0">
+                    <div class="button-elements"><input type="radio" name="audiotype" class="invisible-radio">
+                        <div class="flag--img">
+                            <svg class="svg-icon svg-icon-small">
+                                <use xlink:href="#shape-digital-sound"></use>
+                            </svg>
+                        </div>
+                        <div class="flag--text"><span>Synthetic</span></div>
+                    </div>
+                </label><label class="audiotype-controller visible" data-backend="1">
+                    <div class="button-elements"><input type="radio" name="audiotype" class="invisible-radio">
+                        <div class="flag--img">
+                            <svg class="svg-icon svg-icon-small">
+                                <use xlink:href="#shape-recording-icon"></use>
+                            </svg>
+                        </div>
+                        <div class="flag--text"><span>Rhythm</span></div>
+                    </div>
+                </label><label class="audiotype-controller visible" data-backend="2">
+                    <div class="button-elements"><input type="radio" name="audiotype" class="invisible-radio">
+                        <div class="flag--img">
+                            <svg class="svg-icon svg-icon-small">
+                                <use xlink:href="#shape-recording-icon"></use>
+                            </svg>
+                        </div>
+                        <div class="flag--text"><span>Lead</span></div>
+                    </div>
+                </label><label class="audiotype-controller visible active" data-backend="3">
+                    <div class="button-elements"><input type="radio" name="audiotype" class="invisible-radio">
+                        <div class="flag--img">
+                            <svg class="svg-icon svg-icon-small">
+                                <use xlink:href="#shape-recording-icon"></use>
+                            </svg>
+                        </div>
+                        <div class="flag--text"><span>Full mix</span></div>
+                    </div>
+                </label></div>
+            </div>
+
+            <div class="mobile-only">
+                <div class="listcontrolblock separator-block speed-controls">
+                    <div class="speed-unsupported-tip ui-tooltip text-center"></div>
+                    <div class="speedlabel">Speed</div>
+                    <button class="speedbut action-button" data-dir="0">
+                        <svg>
+                            <use xlink:href="#shape-minus"></use>
+                        </svg>
+                    </button>
+                    <input type="text" class="speedinp" id="mobile-speedinp" maxlength="4" pattern="[0-9]*"
+                           data-v="mobile-speedvalue"><span class="speedvalue active" id="mobile-speedvalue"
+                                                            data-ti="mobile-speedinp">100%</span>
+                    <button class="speedbut action-button" data-dir="1">
+                        <svg>
+                            <use xlink:href="#shape-plus"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mobile-only sidebar-separator onlynotation">
+                <h3>Visualizations</h3>
+            </div>
+
+            <div id="instbuttonsset" class="mobile-only listcontrolblock onlynotation">
+                <button id="mobile-toggle-fretboard" class="settingsbutton" data-inst="2">
+                    <svg class="svg-icon svg-icon-small">
+                        <use xlink:href="#shape-fretboard"></use>
+                    </svg>
+                    Fretboard
+                </button>
+                <button id="mobile-toggle-keyboard" class="settingsbutton active" data-inst="1">
+                    <svg class="svg-icon svg-icon-small">
+                        <use xlink:href="#shape-keyboard"></use>
+                    </svg>
+                    Keyboard
+                </button>
+                <button id="mobile-toggle-violinboard" class="settingsbutton hidden" data-inst="3">
+                    <svg class="svg-icon svg-icon-small">
+                        <use xlink:href="#shape-violin"></use>
+                    </svg>
+                    Violin
+                </button>
+                <button id="mobile-toggle-waveform" class="settingsbutton" data-inst="4">
+                    <svg class="svg-icon svg-icon-small">
+                        <use xlink:href="#shape-waveform"></use>
+                    </svg>
+                    Waveform
+                </button>
+                <button id="mobile-toggle-mixer" class="settingsbutton" data-inst="5">
+                    <svg class="svg-icon svg-icon-small">
+                        <use xlink:href="#shape-mixer"></use>
+                    </svg>
+                    Mixer
+                </button>
+            </div>
+
+            <div class="sidebar-separator transposeui hiddenblockelement onlynotation active">
+                <h3>Key transposition</h3>
+            </div>
+            <div class="slidecontroller listcontrolblock transposeui hiddenblockelement onlynotation active">
+                <div id="transposetip" class="ui-tooltip text-center"> (A)</div>
+                <button id="transposedown" class="action-button left-slide-control" data-step="-1">
+                    <svg class="svg-icon light-icon">
+                        <use xlink:href="#shape-flat"></use>
+                    </svg>
+                </button>
+                <input type="range" class="inputrange" id="transposeslider" min="-12" max="12" value="0"
+                       data-tooltip="transposetip">
+                <button id="transposeup" class="action-button right-slide-control" data-step="1">
+                    <svg class="svg-icon light-icon">
+                        <use xlink:href="#shape-sharp"></use>
+                    </svg>
+                </button>
+            </div>
+            <div id="metronomesection" class="hiddenblockelement onlynotation active">
+                <div class="sidebar-separator">
+                    <h3>Synth metronome</h3>
+                </div>
+                <div class="listcontrolblock slidecontroller separator-block">
+                    <button class="action-button left-slide-control" data-step="-10" id="decrease-metronome">
+                        <svg class="svg-icon light-icon">
+                            <use xlink:href="#shape-no-volume-icon"></use>
+                        </svg>
+                    </button>
+                    <input type="range" class="inputrange" id="metronome-volume" min="0" max="100" value="0">
+                    <button class="action-button right-slide-control" data-step="10" id="increase-metronome">
+                        <svg class="svg-icon light-icon">
+                            <use xlink:href="#shape-volume-icon"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="listcontrolblock">
+                <button id="printbutton" class="settingsbutton onlynotation">
+                    <svg class="svg-icon svg-icon-small">
+                        <use xlink:href="#shape-print-icon"></use>
+                    </svg>
+                    Print
+                </button>
+            </div>
+
+            <div class="settingsbottom onlynotation">
+                <button id="advancedsettings" class="settingstextbutton">Advanced...</button>
+            </div>
+        </section>
+
+        <section id="coursenav" class="coursenav"></section>
+
+
+        <div class="player-empty player-empty-recording hiddenblockelement">
+            <button id="emptyaddrecording" class="upload-box player-empty-button">
+                <div class="player-empty-title">
+                    <svg class="svg-icon">
+                        <use xlink:href="#shape-add-new-icon"></use>
+                    </svg>
+                    Add a recording
+                </div>
+                <p class="player-empty-text">Upload video or MP3, or embed an online video.</p>
+            </button>
+        </div>
+
+        <div class="musicwrapper noselect hasnotation" id="musicwrapper">
+            <div class="video-sidebar noselect" id="video-sidebar">
+                <div class="video-wrapper" id="video-wrapper">
+                    <div class="video-container">
+                        <div class="video-icons">
+                            <button id="switchvideoside" class="active">
+                                <svg class="svg-icon svg-icon-small vidmoveright">
+                                    <use xlink:href="#shape-video-move-right"></use>
+                                </svg>
+                                <svg class="svg-icon svg-icon-small vidmovetop">
+                                    <use xlink:href="#shape-video-move-top"></use>
+                                </svg>
+                            </button>
+                            <button id="togglenotation" class="togglenotation active">
+                                <svg class="svg-icon svg-icon-small vidfullscreen">
+                                    <use xlink:href="#shape-full-demo"></use>
+                                </svg>
+                                <svg class="svg-icon svg-icon-small vidunfullscreen">
+                                    <use xlink:href="#shape-unfullscreen"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="subtitlenav" class="subtitlenav hiddenblockelement">
+                    <button id="subtitleswitch" class="subtitleswitch"></button>
+                </div>
+                <div id="subtitlecues" class="subtitlecues hiddenblockelement"></div>
+                <aside class="video-warning padding-vert-16 padding-horiz-11">
+                    <svg class="svg-icon margin-right-11 pull-left">
+                        <use xlink:href="#shape-error"></use>
+                    </svg>
+                    <p class="small margin-bottom-0">Your browser isn’t fully supported, so you may experience jumps in
+                        playback while seeking or looping. Try using Google Chrome for the fully supported
+                        experience.</p>
+                </aside>
+            </div>
+
+            <div id="vidsizer" class="vidsizer">
+            </div>
+
+            <div class="notation notationwide active">
+
+                <div class="player-empty player-empty-notation hiddenblockelement">
+                    <div class="upload-box">
+                        <button id="emptyuploadnotation" class="player-empty-button">
+                            <div class="player-empty-title">
+                                <svg class="svg-icon">
+                                    <use xlink:href="#shape-upload"></use>
+                                </svg>
+                                Upload an existing notation file
+                            </div>
+                            <p class="player-empty-text">We support MusicXML, Guitar Pro, PowerTab and TuxGuitar
+                                files.</p>
+                        </button>
+
+                        <div class="player-empty-seperator"><span class="player-empty-seperator-text">or</span></div>
+
+                        <button id="emptyopeneditor" class="player-empty-button">
+                            <div class="player-empty-title">
+                                <svg class="svg-icon">
+                                    <use xlink:href="#shape-music-note"></use>
+                                </svg>
+                                Notate in Soundslice
+                            </div>
+                            <p class="player-empty-text">Use our notation/tab editor right here.</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="notation">
+                    <aside id="track-control-rail" class="track-control-rail" role="complimentary">
+                        <div class="track-control-header">
+                            <button id="close-track-settings" class="close-track-settings">×</button>
+                            <span class="track-header" id="track-menu-name"></span>
+
+                            <input type="text" class="track-header track-name-input" id="track-name-input">
+                            <button class="track-name-edit" id="track-name-edit">
+                                <svg class="track-header-edit">
+                                    <use xlink:href="#shape-edit-icon"></use>
+                                </svg>
+                            </button>
+
+                        </div>
+                        <div id="tuning-selector" class="tc-keyval">
+                            <span class="tc-label">Tuning</span>
+                            <span id="track-tuning" class="tc-smalltxt" style="white-space: nowrap;"></span>
+                        </div>
+
+                        <div id="capo-selector" class="tc-keyval">
+                            <span class="tc-label">Capo</span>
+                            <span id="track-capo" class="tc-smalltxt"></span>
+                        </div>
+                        <section class="view-icons clearfix">
+                            <h6 class="settings-label">View options
+                                <button id="track-default-button" class="savedefault-button">Save</button>
+                            </h6>
+                            <button id="trackctrlstaff" class="viewoption-button">
+                                <svg class="svg-icon-small dark-icon">
+                                    <use xlink:href="#shape-music-note"></use>
+                                </svg>
+                                <div class="ui-tooltip">Toggle staff</div>
+                            </button>
+                            <button id="trackctrltab" class="icon-tab-shape viewoption-button">
+                                <svg x="0px" y="0px" viewBox="0 -4 32 36">
+                                    <path class="tabstem"
+                                          d="M24.5,15.6V32h1.2V15.6H24.5z M6.6,23v9h1.2v-9H6.6z M24.5,32H7.8v-4.1h16.7V32z"></path>
+                                    <path d="M7.2,7.7c-1.4,0-2.4-0.5-2.9-1.2l0.8-1.1c0.5,0.5,1.3,0.8,2,0.8c0.9,0,1.4-0.4,1.4-0.9c0-0.6-0.5-0.9-1.5-0.9
+c-0.3,0-0.8,0-0.9,0V3.1c0.1,0,0.6,0,0.9,0c0.8,0,1.4-0.2,1.4-0.8c0-0.6-0.6-0.9-1.4-0.9c-0.7,0-1.4,0.3-1.9,0.8l-0.8-1
+C5,0.5,5.9,0,7.2,0C9,0,10,0.8,10,2c0,0.9-0.8,1.5-1.6,1.7c0.8,0.1,1.7,0.7,1.7,1.8C10.1,6.8,9,7.7,7.2,7.7z M25,12.6
+c1.9-1.4,3-2.5,3-3.8c0-1.5-1.3-2.4-2.8-2.4c-1,0-2.1,0.4-2.9,1.2l0.9,1c0.5-0.5,1.1-0.9,2-0.9c0.6,0,1.2,0.3,1.2,1
+c0,0.9-0.9,1.7-3.9,3.9V14H28v-1.4H25z M28,2.9H11.5v1.5H28V2.9z M7.2,21.4c-1.4,0-2.4-0.5-2.9-1.2l0.8-1.1c0.5,0.5,1.3,0.8,2,0.8
+c0.9,0,1.4-0.4,1.4-0.9c0-0.6-0.5-0.9-1.5-0.9c-0.3,0-0.8,0-0.9,0v-1.4c0.1,0,0.6,0,0.9,0c0.8,0,1.4-0.2,1.4-0.8
+c0-0.6-0.6-0.9-1.4-0.9c-0.7,0-1.4,0.3-1.9,0.8l-0.8-1c0.6-0.7,1.5-1.2,2.8-1.2c1.7,0,2.8,0.8,2.8,2c0,0.9-0.8,1.5-1.6,1.7
+c0.8,0.1,1.7,0.7,1.7,1.8C10.1,20.5,9,21.4,7.2,21.4z M28,16.9H11.5v1.5H28V16.9z M20.8,10H4.3v1.5h16.5V10z"></path>
+                                </svg>
+                                <div class="ui-tooltip">Toggle tab</div>
+                            </button>
+                            <button id="trackctrlchords" class="icon-chord-shape viewoption-button">
+                                <svg x="0px" y="0px" viewBox="0 -4 32 36">
+                                    <g class="chorddiagram">
+                                        <path d="M31.8,31.8H0.3V5.9h31.5V31.8z M25.7,30.7h5.1v-7.1h-5.1V30.7z M19.6,30.7h5.1v-7.1h-5.1V30.7z M13.5,30.7h5.1v-7.1h-5.1 V30.7z M7.4,30.7h5.1v-7.1H7.4V30.7z M1.3,30.7h5.1v-7.1H1.3V30.7z M25.7,22.5h5.1v-7.5h-5.1V22.5z M19.6,22.5h5.1v-7.5h-5.1V22.5z M13.5,22.5h5.1v-7.5h-5.1V22.5z M7.4,22.5h5.1v-7.5H7.4V22.5z M1.3,22.5h5.1v-7.5H1.3V22.5z M25.7,13.8h5.1V7.1h-5.1V13.8z M19.6,13.8h5.1V7.1h-5.1V13.8z M13.5,13.8h5.1V7.1h-5.1V13.8z M7.4,13.8h5.1V7.1H7.4V13.8z M1.3,13.8h5.1V7.1H1.3V13.8z"></path>
+                                        <ellipse cx="25.2" cy="10.3" rx="2.3" ry="2.6"></ellipse>
+                                        <ellipse cx="13" cy="18.7" rx="2.3" ry="2.6"></ellipse>
+                                    </g>
+                                    <g>
+                                        <path d="M6.7,1.5L5.9,4H4.8l2.7-8h1.2l2.7,8h-1.1L9.6,1.5H6.7z M9.4,0.7L8.6-1.6c-0.2-0.5-0.3-1-0.4-1.5h0C8-2.6,7.9-2.1,7.7-1.6 L7,0.7H9.4z"></path>
+                                        <path d="M12.6-0.2c0-0.6,0-1.1,0-1.6h0.9l0,0.9h0c0.3-0.5,0.9-1.1,1.8-1.1c0.8,0,1.4,0.5,1.6,1.2h0c0.2-0.3,0.4-0.6,0.6-0.7 c0.3-0.3,0.7-0.4,1.3-0.4c0.8,0,1.9,0.5,1.9,2.5V4h-1V0.7c0-1.1-0.4-1.8-1.2-1.8c-0.6,0-1.1,0.4-1.2,0.9c0,0.1-0.1,0.3-0.1,0.5V4 h-1V0.6C16.2-0.4,15.8-1,15-1c-0.7,0-1.1,0.5-1.3,1c-0.1,0.2-0.1,0.3-0.1,0.5V4h-1V-0.2z"></path>
+                                        <path d="M27.2-3.7V-3l-3.4,7h-1.1l3.3-6.8v0h-3.8v-0.9H27.2z"></path>
+                                    </g>
+                                </svg>
+                                <div class="ui-tooltip">Toggle chords</div>
+                            </button>
+                            <button id="trackctrllyrics" class="viewoption-button">
+                                <svg class="svg-icon-small dark-icon">
+                                    <use xlink:href="#shape-lyrics-icon"></use>
+                                </svg>
+                                <div class="ui-tooltip">Toggle lyrics</div>
+                            </button>
+                        </section>
+                        <h6 class="settings-label">Transposition
+                            <button id="trans-default-button" class="savedefault-button">Save</button>
+                        </h6>
+                        <div id="transpose-selector" class="tc-keyval tc-clickable" data-menu="transpose-key-choices">
+                            <span class="tc-label">Key</span>
+                            <span id="transkeyval" class="tc-smalltxt"></span>
+                        </div>
+                        <ul id="transpose-key-choices" class="selector-ui tooltip-menu twelve-keys">
+                            <li>
+                                <button class="keybutton" id="transkey0" data-val="0">C</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey1" data-val="1">D♭</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey2" data-val="2">D</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey3" data-val="3">E♭</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey4" data-val="4">E</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey5" data-val="5">F</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey6" data-val="6">G♭</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey7" data-val="7">G</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey8" data-val="8">A♭</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey9" data-val="9">A</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey10" data-val="10">B♭</button>
+                            </li>
+                            <li>
+                                <button class="keybutton" id="transkey11" data-val="11">B</button>
+                            </li>
+                        </ul>
+                        <div id="transpose-oct-selector" class="tc-keyval tc-clickable"
+                             data-menu="transpose-oct-choices">
+                            <span class="tc-label">Octave</span>
+                            <span id="transoctval" class="tc-smalltxt"></span>
+                        </div>
+                        <ul id="transpose-oct-choices" class="selector-ui tooltip-menu">
+                            <li>
+                                <button id="transoct-3" data-val="-3">3 below</button>
+                            </li>
+                            <li>
+                                <button id="transoct-2" data-val="-2">2 below</button>
+                            </li>
+                            <li>
+                                <button id="transoct-1" data-val="-1">1 below</button>
+                            </li>
+                            <li>
+                                <button id="transoct0" data-val="0">Same as written</button>
+                            </li>
+                            <li>
+                                <button id="transoct1" data-val="1">1 above</button>
+                            </li>
+                            <li>
+                                <button id="transoct2" data-val="2">2 above</button>
+                            </li>
+                            <li>
+                                <button id="transoct3" data-val="3">3 above</button>
+                            </li>
+                        </ul>
+
+
+                        <section id="synthcontrols" style="display: block;">
+                            <h6 class="settings-label">Synth
+                                <button id="synth-default-button" class="savedefault-button">Save</button>
+                            </h6>
+                            <div id="synthsound-selector" class="tc-keyval tc-clickable" data-menu="synthsound-choices">
+                                <span class="tc-label">Sound</span>
+                                <span id="synthsound" class="tc-smalltxt" style="position: absolute"></span>
+                            </div>
+                            <ul id="synthsound-choices" class="selector-ui tooltip-menu">
+                                <li>
+                                    <button id="soundbutton21" data-font="21">Accordion <span class="synth-descriptor">Standard</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button id="soundbutton23" data-font="23">Accordion <span class="synth-descriptor">Tango</span>
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="synthvolume">
+                                <button id="trackvoldown" class="action-button left-slide-control" data-step="-10">
+                                    <svg class="svg-icon svg-icon-small dark-icon">
+                                        <use xlink:href="#shape-no-volume-icon"></use>
+                                    </svg>
+                                </button>
+                                <input type="range" class="inputrange synthvolume-slider" id="trackvolslider" min="0"
+                                       max="100" value="100">
+                                <button id="trackvolup" class="action-button right-slide-control" data-step="10">
+                                    <svg class="svg-icon svg-icon-small dark-icon">
+                                        <use xlink:href="#shape-volume-icon"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                        </section>
+
+
+                        <section id="tc-owneropts" class="hiddenblockelement">
+                            <h6 class="settings-label">Owner options
+                                <button id="owneropts-save-button" class="savedefault-button">Save</button>
+                            </h6>
+                            <label class="tc-smalltxt hiddenblockelement active">
+                                <input type="checkbox" id="tc-togglekeyboard">
+                                Virtual keyboard
+                            </label>
+                            <label id="tc-owneroptsviolin" class="tc-smalltxt hiddenblockelement">
+                                <input type="checkbox" id="tc-toggleviolin">
+                                Virtual violin
+                            </label>
+                        </section>
+
+                    </aside>
+
+                    <button id="autoscrollon" class="action-button">Resume autoscroll</button>
+
+
+                    <div id="tracklabels">
+                    </div>
+                    <div class="notationland">
+                        <div class="playhead sheetmusicel"
+                             style="z-index: 2; height: 336.626px; left: 919.289px; top: 40px;"></div>
+                        <canvas id="playheadnote" class="sheetmusicel" style="z-index: 3"></canvas>
+                        <canvas class="notecanvas sheetmusicel" style="z-index: 0; width: 1312px; height: 660px;"
+                                width="1312" height="660"></canvas>
+                        <canvas class="looper sheetmusicel" style="z-index: 1; width: 1312px; height: 660px;"
+                                width="1312" height="660"></canvas>
+                        <div class="mouseland sheetmusicel" style="z-index: 7; width: 1312px; height: 660px;"></div>
+                    </div>
+                    <div class="vertbar scrollbar active" style="height: 155px; top: 0px;"></div>
+                </div>
+                <div class="horizbar scrollbar"></div>
+            </div>
+        </div>
+
+
+        <div id="waveform" class="waveform noselect hiddenblockelement">
+            <div class="waveform-time">
+                <input type="text" class="waveformtime-inp">
+                <span class="waveformtime-now">0:00.00</span>
+                <span>/</span>
+                <span class="waveformtime-all"></span>
+            </div>
+            <div class="waveform-zoom">
+                <button class="waveform-zoom-btn zoom-in">
+                    <svg>
+                        <use xlink:href="#shape-add-new-icon"></use>
+                    </svg>
+                </button>
+                <button class="waveform-zoom-btn zoom-out">
+                    <svg>
+                        <use xlink:href="#shape-waveform-zoomout-icon"></use>
+                    </svg>
+                </button>
+            </div>
+            <canvas class="waveformcan sheetmusicel" style="z-index: 1"></canvas>
+            <div class="waveformplayhead sheetmusicel" style="z-index: 5"></div>
+            <div class="waveformnav" style="z-index: 8; width: 20px;"></div>
+            <div class="waveformloop sheetmusicel" style="z-index: 4"></div>
+
+        </div>
+
+
+        <div id="fretboard" class="noselect onlynotation">
+            <button id="fretboard-nut" class="fretboard-overlay text-center"></button>
+            <div id="fretcapo" class="fretboard-overlay text-center"></div>
+            <canvas id="fretback" class="sheetmusicel" style="z-index: 4"></canvas>
+            <canvas id="fretfront" class="sheetmusicel" style="z-index: 5"></canvas>
+        </div>
+
+        <div id="keyboard" class="noselect onlynotation">
+            <button id="keyboard-nut"></button>
+            <canvas id="keycan" class="sheetmusicel"></canvas>
+        </div>
+
+        <div id="mixer" class="hiddenblockelement mixerdiv">
+            <table class="mixer noselect">
+                <thead>
+                <tr>
+                    <td>Track</td>
+                    <td>Notation</td>
+                    <td>Synth sound</td>
+                </tr>
+                </thead>
+                <tbody id="mixerbody">
+                <tr id="mixer0" data-trackid="0">
+                    <td class="mixername">Guitar</td>
+                    <td class="mixeropts">
+                        <button data-action="1" class="mixerstaff viewoption-button active">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#shape-music-note"></use>
+                            </svg>
+                        </button>
+                        <button data-action="2" class="mixertab icon-tab-shape viewoption-button active stemless"
+                                style="display: inline-block;">
+                            <svg x="0px" y="0px" viewBox="0 -4 32 36">
+                                <path class="tabstem"
+                                      d="M24.5,15.6V32h1.2V15.6H24.5z M6.6,23v9h1.2v-9H6.6z M24.5,32H7.8v-4.1h16.7V32z"></path>
+                                <path d="M7.2,7.7c-1.4,0-2.4-0.5-2.9-1.2l0.8-1.1c0.5,0.5,1.3,0.8,2,0.8c0.9,0,1.4-0.4,1.4-0.9c0-0.6-0.5-0.9-1.5-0.9
+c-0.3,0-0.8,0-0.9,0V3.1c0.1,0,0.6,0,0.9,0c0.8,0,1.4-0.2,1.4-0.8c0-0.6-0.6-0.9-1.4-0.9c-0.7,0-1.4,0.3-1.9,0.8l-0.8-1
+C5,0.5,5.9,0,7.2,0C9,0,10,0.8,10,2c0,0.9-0.8,1.5-1.6,1.7c0.8,0.1,1.7,0.7,1.7,1.8C10.1,6.8,9,7.7,7.2,7.7z M25,12.6
+c1.9-1.4,3-2.5,3-3.8c0-1.5-1.3-2.4-2.8-2.4c-1,0-2.1,0.4-2.9,1.2l0.9,1c0.5-0.5,1.1-0.9,2-0.9c0.6,0,1.2,0.3,1.2,1
+c0,0.9-0.9,1.7-3.9,3.9V14H28v-1.4H25z M28,2.9H11.5v1.5H28V2.9z M7.2,21.4c-1.4,0-2.4-0.5-2.9-1.2l0.8-1.1c0.5,0.5,1.3,0.8,2,0.8
+c0.9,0,1.4-0.4,1.4-0.9c0-0.6-0.5-0.9-1.5-0.9c-0.3,0-0.8,0-0.9,0v-1.4c0.1,0,0.6,0,0.9,0c0.8,0,1.4-0.2,1.4-0.8
+c0-0.6-0.6-0.9-1.4-0.9c-0.7,0-1.4,0.3-1.9,0.8l-0.8-1c0.6-0.7,1.5-1.2,2.8-1.2c1.7,0,2.8,0.8,2.8,2c0,0.9-0.8,1.5-1.6,1.7
+c0.8,0.1,1.7,0.7,1.7,1.8C10.1,20.5,9,21.4,7.2,21.4z M28,16.9H11.5v1.5H28V16.9z M20.8,10H4.3v1.5h16.5V10z"></path>
+                            </svg>
+                        </button>
+                        <button data-action="3" class="mixerchord icon-chord-shape viewoption-button active"
+                                style="display: inline-block;">
+                            <svg x="0px" y="0px" viewBox="0 -4 32 36">
+                                <g class="chorddiagram">
+                                    <path d="M31.8,31.8H0.3V5.9h31.5V31.8z M25.7,30.7h5.1v-7.1h-5.1V30.7z M19.6,30.7h5.1v-7.1h-5.1V30.7z M13.5,30.7h5.1v-7.1h-5.1 V30.7z M7.4,30.7h5.1v-7.1H7.4V30.7z M1.3,30.7h5.1v-7.1H1.3V30.7z M25.7,22.5h5.1v-7.5h-5.1V22.5z M19.6,22.5h5.1v-7.5h-5.1V22.5z M13.5,22.5h5.1v-7.5h-5.1V22.5z M7.4,22.5h5.1v-7.5H7.4V22.5z M1.3,22.5h5.1v-7.5H1.3V22.5z M25.7,13.8h5.1V7.1h-5.1V13.8z M19.6,13.8h5.1V7.1h-5.1V13.8z M13.5,13.8h5.1V7.1h-5.1V13.8z M7.4,13.8h5.1V7.1H7.4V13.8z M1.3,13.8h5.1V7.1H1.3V13.8z"></path>
+                                    <ellipse cx="25.2" cy="10.3" rx="2.3" ry="2.6"></ellipse>
+                                    <ellipse cx="13" cy="18.7" rx="2.3" ry="2.6"></ellipse>
+                                </g>
+                                <g>
+                                    <path d="M6.7,1.5L5.9,4H4.8l2.7-8h1.2l2.7,8h-1.1L9.6,1.5H6.7z M9.4,0.7L8.6-1.6c-0.2-0.5-0.3-1-0.4-1.5h0C8-2.6,7.9-2.1,7.7-1.6 L7,0.7H9.4z"></path>
+                                    <path d="M12.6-0.2c0-0.6,0-1.1,0-1.6h0.9l0,0.9h0c0.3-0.5,0.9-1.1,1.8-1.1c0.8,0,1.4,0.5,1.6,1.2h0c0.2-0.3,0.4-0.6,0.6-0.7 c0.3-0.3,0.7-0.4,1.3-0.4c0.8,0,1.9,0.5,1.9,2.5V4h-1V0.7c0-1.1-0.4-1.8-1.2-1.8c-0.6,0-1.1,0.4-1.2,0.9c0,0.1-0.1,0.3-0.1,0.5V4 h-1V0.6C16.2-0.4,15.8-1,15-1c-0.7,0-1.1,0.5-1.3,1c-0.1,0.2-0.1,0.3-0.1,0.5V4h-1V-0.2z"></path>
+                                    <path d="M27.2-3.7V-3l-3.4,7h-1.1l3.3-6.8v0h-3.8v-0.9H27.2z"></path>
+                                </g>
+                            </svg>
+                        </button>
+                        <button data-action="4" class="mixerlyric viewoption-button" style="display: none;">
+                            <svg class="svg-icon-small dark-icon">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#shape-lyrics-icon"></use>
+                            </svg>
+                        </button>
+                    </td>
+                    <td class="mixervol"><input data-action="5" type="range" class="inputrange" min="0" max="100">
+                        <button class="mixermute mixerbutton" data-action="6">Mute</button>
+                        <button class="mixersolo mixerbutton" data-action="7">Solo</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <table class="hiddenblockelement">
+            <tbody>
+            <tr id="mixertemplate">
+                <td class="mixername"></td>
+                <td class="mixeropts">
+                    <button data-action="1" class="mixerstaff viewoption-button">
+                        <svg>
+                            <use xlink:href="#shape-music-note"></use>
+                        </svg>
+                    </button>
+                    <button data-action="2" class="mixertab icon-tab-shape viewoption-button">
+                        <svg x="0px" y="0px" viewBox="0 -4 32 36">
+                            <path class="tabstem"
+                                  d="M24.5,15.6V32h1.2V15.6H24.5z M6.6,23v9h1.2v-9H6.6z M24.5,32H7.8v-4.1h16.7V32z"></path>
+                            <path d="M7.2,7.7c-1.4,0-2.4-0.5-2.9-1.2l0.8-1.1c0.5,0.5,1.3,0.8,2,0.8c0.9,0,1.4-0.4,1.4-0.9c0-0.6-0.5-0.9-1.5-0.9
+c-0.3,0-0.8,0-0.9,0V3.1c0.1,0,0.6,0,0.9,0c0.8,0,1.4-0.2,1.4-0.8c0-0.6-0.6-0.9-1.4-0.9c-0.7,0-1.4,0.3-1.9,0.8l-0.8-1
+C5,0.5,5.9,0,7.2,0C9,0,10,0.8,10,2c0,0.9-0.8,1.5-1.6,1.7c0.8,0.1,1.7,0.7,1.7,1.8C10.1,6.8,9,7.7,7.2,7.7z M25,12.6
+c1.9-1.4,3-2.5,3-3.8c0-1.5-1.3-2.4-2.8-2.4c-1,0-2.1,0.4-2.9,1.2l0.9,1c0.5-0.5,1.1-0.9,2-0.9c0.6,0,1.2,0.3,1.2,1
+c0,0.9-0.9,1.7-3.9,3.9V14H28v-1.4H25z M28,2.9H11.5v1.5H28V2.9z M7.2,21.4c-1.4,0-2.4-0.5-2.9-1.2l0.8-1.1c0.5,0.5,1.3,0.8,2,0.8
+c0.9,0,1.4-0.4,1.4-0.9c0-0.6-0.5-0.9-1.5-0.9c-0.3,0-0.8,0-0.9,0v-1.4c0.1,0,0.6,0,0.9,0c0.8,0,1.4-0.2,1.4-0.8
+c0-0.6-0.6-0.9-1.4-0.9c-0.7,0-1.4,0.3-1.9,0.8l-0.8-1c0.6-0.7,1.5-1.2,2.8-1.2c1.7,0,2.8,0.8,2.8,2c0,0.9-0.8,1.5-1.6,1.7
+c0.8,0.1,1.7,0.7,1.7,1.8C10.1,20.5,9,21.4,7.2,21.4z M28,16.9H11.5v1.5H28V16.9z M20.8,10H4.3v1.5h16.5V10z"></path>
+                        </svg>
+                    </button>
+                    <button data-action="3" class="mixerchord icon-chord-shape viewoption-button">
+                        <svg x="0px" y="0px" viewBox="0 -4 32 36">
+                            <g class="chorddiagram">
+                                <path d="M31.8,31.8H0.3V5.9h31.5V31.8z M25.7,30.7h5.1v-7.1h-5.1V30.7z M19.6,30.7h5.1v-7.1h-5.1V30.7z M13.5,30.7h5.1v-7.1h-5.1 V30.7z M7.4,30.7h5.1v-7.1H7.4V30.7z M1.3,30.7h5.1v-7.1H1.3V30.7z M25.7,22.5h5.1v-7.5h-5.1V22.5z M19.6,22.5h5.1v-7.5h-5.1V22.5z M13.5,22.5h5.1v-7.5h-5.1V22.5z M7.4,22.5h5.1v-7.5H7.4V22.5z M1.3,22.5h5.1v-7.5H1.3V22.5z M25.7,13.8h5.1V7.1h-5.1V13.8z M19.6,13.8h5.1V7.1h-5.1V13.8z M13.5,13.8h5.1V7.1h-5.1V13.8z M7.4,13.8h5.1V7.1H7.4V13.8z M1.3,13.8h5.1V7.1H1.3V13.8z"></path>
+                                <ellipse cx="25.2" cy="10.3" rx="2.3" ry="2.6"></ellipse>
+                                <ellipse cx="13" cy="18.7" rx="2.3" ry="2.6"></ellipse>
+                            </g>
+                            <g>
+                                <path d="M6.7,1.5L5.9,4H4.8l2.7-8h1.2l2.7,8h-1.1L9.6,1.5H6.7z M9.4,0.7L8.6-1.6c-0.2-0.5-0.3-1-0.4-1.5h0C8-2.6,7.9-2.1,7.7-1.6 L7,0.7H9.4z"></path>
+                                <path d="M12.6-0.2c0-0.6,0-1.1,0-1.6h0.9l0,0.9h0c0.3-0.5,0.9-1.1,1.8-1.1c0.8,0,1.4,0.5,1.6,1.2h0c0.2-0.3,0.4-0.6,0.6-0.7 c0.3-0.3,0.7-0.4,1.3-0.4c0.8,0,1.9,0.5,1.9,2.5V4h-1V0.7c0-1.1-0.4-1.8-1.2-1.8c-0.6,0-1.1,0.4-1.2,0.9c0,0.1-0.1,0.3-0.1,0.5V4 h-1V0.6C16.2-0.4,15.8-1,15-1c-0.7,0-1.1,0.5-1.3,1c-0.1,0.2-0.1,0.3-0.1,0.5V4h-1V-0.2z"></path>
+                                <path d="M27.2-3.7V-3l-3.4,7h-1.1l3.3-6.8v0h-3.8v-0.9H27.2z"></path>
+                            </g>
+                        </svg>
+                    </button>
+                    <button data-action="4" class="mixerlyric viewoption-button">
+                        <svg class="svg-icon-small dark-icon">
+                            <use xlink:href="#shape-lyrics-icon"></use>
+                        </svg>
+                    </button>
+                </td>
+                <td class="mixervol"><input data-action="5" type="range" class="inputrange" min="0" max="100">
+                    <button class="mixermute mixerbutton" data-action="6">Mute</button>
+                    <button class="mixersolo mixerbutton" data-action="7">Solo</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <footer id="controlbar" class="controlbar noselect">
+            <div class="controlbar-table">
+
+                <section class="speed-controls">
+                    <div class="speed-unsupported-tip ui-tooltip text-center"></div>
+                    <div class="speedlabel">Speed</div>
+                    <button class="speedbut action-button" data-dir="0">
+                        <svg>
+                            <use xlink:href="#shape-minus"></use>
+                        </svg>
+                    </button>
+                    <input type="text" class="speedinp" id="speedinp" maxlength="4" pattern="[0-9]*"
+                           data-v="speedvalue"><span class="speedvalue active" id="speedvalue"
+                                                     data-ti="speedinp">100%</span>
+                    <button class="speedbut action-button" data-dir="1">
+                        <svg>
+                            <use xlink:href="#shape-plus"></use>
+                        </svg>
+                    </button>
+                </section>
+
+
+                <section class="mid">
+                    <div class="controlbar-center">
+                        <div class="centerbit playing-1 playcontainer">
+                            <button class="action-button playbutton">
+                                <img class="playloadspin" src="assets/images/loader-circle.png" alt="">
+                                <svg class="playicon play-1">
+                                    <use xlink:href="#shape-play-icon"></use>
+                                </svg>
+                                <svg class="playicon play-2">
+                                    <use xlink:href="#shape-play-1x"></use>
+                                </svg>
+                                <svg class="playicon play-3">
+                                    <use xlink:href="#shape-play-123"></use>
+                                </svg>
+                                <svg class="pauseicon">
+                                    <use xlink:href="#shape-pause-icon"></use>
+                                </svg>
+                            </button>
+                            <button id="show-play-menu" class="action-button control-icon menuarrow onlynotation"
+                                    style="top: 3px; left: -3px;">
+                                <svg class="svg-icon">
+                                    <use xlink:href="#shape-uparrow"></use>
+                                </svg>
+                            </button>
+                            <div class="ui-tooltip jsfliptip" id="play-tooltip">
+                                <h4 class="tooltip-label">Play options</h4>
+                                <label class="audiotype-controller active visible playtype1" data-play="1">
+                                    <div class="button-elements">
+                                        <input type="radio" name="playtype" class="invisible-radio">
+                                        <div class="flag--img">
+                                            <svg class="svg-icon svg-icon-small">
+                                                <use xlink:href="#shape-play-icon"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="flag--text"><span>Play looped</span></div>
+                                    </div>
+                                </label>
+                                <label class="audiotype-controller visible playtype2" data-play="2">
+                                    <div class="button-elements">
+                                        <input type="radio" name="playtype" class="invisible-radio">
+                                        <div class="flag--img">
+                                            <svg class="svg-icon svg-icon-small">
+                                                <use xlink:href="#shape-play-1x"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="flag--text"><span>Play once</span></div>
+                                    </div>
+                                </label>
+                                <label id="playtype3label" class="audiotype-controller playtype3 visible" data-play="3">
+                                    <div class="button-elements">
+                                        <input type="radio" name="playtype" class="invisible-radio">
+                                        <div class="flag--img">
+                                            <svg class="svg-icon svg-icon-small">
+                                                <use xlink:href="#shape-play-123"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="flag--text"><span>Play with count-in</span></div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="centerbit mid">
+                            <p class="artist-info">Auld Lang Syne <span class="artist-name">Adrian Holovaty</span></p>
+                            <div id="progressbar" class="progress-bar">
+                                <div id="progressmarker" class="progress-marker" style="width: 8.55258%;">
+                                    <div id="progressnib" class="progress-nib">
+                                        <div id="progress-tooltip" class="ui-tooltip jsfliptip text-center">
+                                            <p class="time-count"><span id="currenttime">0:00</span> / <span
+                                                    class="totaltime">0:58</span></p>
+                                            <p class="measure-count onlynotation">Measure <span
+                                                    id="currentmeasure"></span> / <span id="nummeasures">40</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="offlineui" class="offlineui hiddenblockelement active"><span class="nonstatus">✔ Offline mode enabled</span>
+                            </div>
+
+                        </div>
+                        <div class="centerbit" id="toggle-container">
+                            <div class="recordinglabel">Recording</div>
+                            <button class="action-button control-icon midi-toggle" id="midi-toggle">
+                                <svg class="svg-icon">
+                                    <use xlink:href="#shape-recording-icon"></use>
+                                </svg>
+                                <span class="recording-name">Full mix</span></button>
+
+                            <button class="action-button control-icon midi-toggle" id="addrecording-empty">
+                                <svg class="svg-icon">
+                                    <use xlink:href="#shape-add-new-icon"></use>
+                                </svg>
+                                <span class="recording-name">Add…</span>
+                            </button>
+
+                            <div class="ui-tooltip jsfliptip" id="synth-toggle-tooltip">
+                                <h4 class="tooltip-label">Recordings</h4>
+                                <div id="recordings-tooltip"><label class="audiotype-controller visible"
+                                                                    data-backend="0">
+                                    <div class="button-elements"><input type="radio" name="audiotype"
+                                                                        class="invisible-radio">
+                                        <div class="flag--img">
+                                            <svg class="svg-icon svg-icon-small">
+                                                <use xlink:href="#shape-digital-sound"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="flag--text"><span>Synthetic</span></div>
+                                    </div>
+                                </label><label class="audiotype-controller visible" data-backend="1">
+                                    <div class="button-elements"><input type="radio" name="audiotype"
+                                                                        class="invisible-radio">
+                                        <div class="flag--img">
+                                            <svg class="svg-icon svg-icon-small">
+                                                <use xlink:href="#shape-recording-icon"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="flag--text"><span>Rhythm</span></div>
+                                    </div>
+                                </label><label class="audiotype-controller visible" data-backend="2">
+                                    <div class="button-elements"><input type="radio" name="audiotype"
+                                                                        class="invisible-radio">
+                                        <div class="flag--img">
+                                            <svg class="svg-icon svg-icon-small">
+                                                <use xlink:href="#shape-recording-icon"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="flag--text"><span>Lead</span></div>
+                                    </div>
+                                </label><label class="audiotype-controller visible active" data-backend="3">
+                                    <div class="button-elements"><input type="radio" name="audiotype"
+                                                                        class="invisible-radio">
+                                        <div class="flag--img">
+                                            <svg class="svg-icon svg-icon-small">
+                                                <use xlink:href="#shape-recording-icon"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="flag--text"><span>Full mix</span></div>
+                                    </div>
+                                </label></div>
+
+                                <div class="add-recording-button">
+                                    <button id="addrecording">
+                                        <svg class="svg-icon svg-icon-small">
+                                            <use xlink:href="#shape-add-new-icon"></use>
+                                        </svg>
+                                        Add a recording
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="centerbit settings">
+                            <button id="toggle-settings-mobile" class="action-button control-icon">
+                                <div class="gear-container">
+                                    <svg class="svg-icon">
+                                        <use xlink:href="#shape-gear"></use>
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section class="right">
+                    <div id="instbuttons">
+                        <button id="toggle-mixer" class="action-button control-icon instrument-button" data-inst="5">
+                            <svg class="svg-icon">
+                                <use xlink:href="#shape-mixer"></use>
+                            </svg>
+                        </button>
+                        <button id="toggle-waveform" class="action-button control-icon instrument-button" data-inst="4">
+                            <svg class="svg-icon">
+                                <use xlink:href="#shape-waveform"></use>
+                            </svg>
+                        </button>
+                        <button id="toggle-violinboard" class="action-button control-icon instrument-button"
+                                data-inst="3">
+                            <svg class="svg-icon">
+                                <use xlink:href="#shape-violin"></use>
+                            </svg>
+                        </button>
+                        <button id="toggle-fretboard" class="action-button control-icon instrument-button"
+                                data-inst="2">
+                            <svg class="svg-icon">
+                                <use xlink:href="#shape-fretboard"></use>
+                            </svg>
+                        </button>
+                        <button id="toggle-keyboard" class="action-button control-icon instrument-button visible active"
+                                data-inst="1">
+                            <svg class="svg-icon">
+                                <use xlink:href="#shape-keyboard"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <button id="show-inst-menu" class="action-button control-icon menuarrow">
+                        <svg class="svg-icon">
+                            <use xlink:href="#shape-uparrow"></use>
+                        </svg>
+                    </button>
+                    <div class="ui-tooltip jsfliptip" id="inst-tooltip">
+                        <h4 class="tooltip-label">Visualizations</h4>
+                        <label id="fretboard-choice" class="audiotype-controller visible" data-inst="2">
+                            <div class="button-elements">
+                                <input type="radio" name="insttype" class="invisible-radio">
+                                <div class="flag--img">
+                                    <svg class="svg-icon svg-icon-small">
+                                        <use xlink:href="#shape-fretboard"></use>
+                                    </svg>
+                                </div>
+                                <div class="flag--text"><span>Fretboard</span></div>
+                            </div>
+                        </label>
+                        <label id="keyboard-choice" class="audiotype-controller visible active" data-inst="1">
+                            <div class="button-elements">
+                                <input type="radio" name="insttype" class="invisible-radio">
+                                <div class="flag--img">
+                                    <svg class="svg-icon svg-icon-small">
+                                        <use xlink:href="#shape-keyboard"></use>
+                                    </svg>
+                                </div>
+                                <div class="flag--text"><span>Keyboard</span></div>
+                            </div>
+                        </label>
+                        <label id="violinboard-choice" class="audiotype-controller" data-inst="3">
+                            <div class="button-elements">
+                                <input type="radio" name="insttype" class="invisible-radio">
+                                <div class="flag--img">
+                                    <svg class="svg-icon svg-icon-small">
+                                        <use xlink:href="#shape-violin"></use>
+                                    </svg>
+                                </div>
+                                <div class="flag--text"><span>Violin</span></div>
+                            </div>
+                        </label>
+                        <label id="waveform-choice" class="audiotype-controller visible" data-inst="4">
+                            <div class="button-elements">
+                                <input type="radio" name="insttype" class="invisible-radio">
+                                <div class="flag--img">
+                                    <svg class="svg-icon svg-icon-small">
+                                        <use xlink:href="#shape-waveform"></use>
+                                    </svg>
+                                </div>
+                                <div class="flag--text"><span>Waveform</span></div>
+                            </div>
+                        </label>
+                        <label id="mixer-choice" class="audiotype-controller visible" data-inst="5">
+                            <div class="button-elements">
+                                <input type="radio" name="insttype" class="invisible-radio">
+                                <div class="flag--img">
+                                    <svg class="svg-icon svg-icon-small">
+                                        <use xlink:href="#shape-mixer"></use>
+                                    </svg>
+                                </div>
+                                <div class="flag--text"><span>Mixer</span></div>
+                            </div>
+                        </label>
+                    </div>
+                    <button id="toggle-settings" class="action-button control-icon padding-horiz-10">
+                        <div class="gear-container">
+                            <svg class="svg-icon">
+                                <use xlink:href="#shape-gear"></use>
+                            </svg>
+                        </div>
+                    </button>
+                </section>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<div class="modal" id="optionsmodal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <button class="pull-right jsclosemodal closex">×</button>
+            Advanced player settings
+        </div>
+        <form id="optionsform">
+            <div class="modal-content">
+                <div class="modal-subcontent">
+                    <label><input type="checkbox" id="optionhoriz"> Use “infinite horizontal view”</label>
+                </div>
+                <div id="optionhorizscrollblock" class="modal-subcontent hiddenblockelement">
+                    <label><input type="checkbox" id="optionhorizscroll"> Keep playhead at left of screen</label>
+                </div>
+                <div id="optionvertscrollblock" class="modal-subcontent hiddenblockelement">
+                    <label><input type="checkbox" id="optionvertscroll"> Keep playhead at top of screen</label>
+                </div>
+                <div class="modal-subcontent">
+                    <label><input type="checkbox" id="optionhidestave"> Hide empty staves</label>
+                </div>
+
+            </div>
+            <div class="modal-content">
+                <button class="standard-button jsclosemodal">Close</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="assets/js/common-v2.min.js"></script>
+<script type="text/javascript" src="assets/js/player.min.js"></script>
+</body>
+</html>
